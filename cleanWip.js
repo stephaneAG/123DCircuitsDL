@@ -94,6 +94,7 @@ viewsLinks.push(
 // build up the popup <ul> & <li>'s
 // ul
 var popupUl = document.createElement('ul');
+popupUl.style.paddingLeft = '0px';
 // li's
 viewsLinks.forEach(function(viewLink){
   // R: viewLink = [0]-> name/type | [1]-> SVG icon  | [2]-> content  | [3]-> .ext 
@@ -104,6 +105,8 @@ viewsLinks.forEach(function(viewLink){
   li.setAttribute('data-viewType', viewLink[0]);
   li.setAttribute('data-viewExt', viewLink[3]);
   li.style.display = 'block';
+  li.style.height = '50px';
+  li.style.border = '1px solid blue'; // DEBUG
   // create to-be-zipped checkbox
   var checkBox = document.createElement('input');
   checkBox.type = 'checkbox';
@@ -117,8 +120,11 @@ viewsLinks.forEach(function(viewLink){
     if(this.checked) checkToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
     else uncheckToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
   }
-  var iconDiv = document.createElement('div')
+  var iconDiv = document.createElement('div');
+  iconDiv.style.pointerEvents = 'none';
   iconDiv.className = 'sitemenu__view_switch sitemenu__svg_block_btn'; // necessary classes ( as original container )
+  iconDiv.style.float = 'left';
+  iconDiv.style.border = '1px solid red'; // DEBUG
   // TODO: append viewLink SVG icon as child of the iconDiv
   //iconDiv.appendChild( viewLink[1].childNodes[0].parentNode); // still wip .. dirty hack ?
   var dlLink = document.createElement('a');
