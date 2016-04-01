@@ -119,7 +119,7 @@ viewsLinks.forEach(function(viewLink){
   var iconDiv = document.createElement('div')
   iconDiv.className = 'sitemenu__view_switch sitemenu__svg_block_btn'; // necessary classes ( as original container )
   // TODO: append viewLink SVG icon as child of the iconDiv
-  iconDiv.appendChild( viewLink[1]);
+  iconDiv.appendChild( viewLink[1].parentNode);
   var dlLink = document.createElement('a');
   //dlLink.textContent = 'thisSpecificView'; // TODO: change to actual type from viewLink
   dlLink.textContent = viewLink[0];
