@@ -79,3 +79,75 @@ formData.value = JSON.stringify( htmlTable.textContent.split('\t').join(',') );
 // R: a[href="schematic"] > div.sitemenu__view_switch sitemenu__svg_block_btn > svg icon
 // -- link to saveAs() for specific <li> item
 // -- link to saveAs() all the checked stuff as a .zip file
+
+
+
+
+
+
+
+
+// ---------------------------- quick unik test ------------------------------------
+var li = document.createElement('li')
+li.className = 'circuit-view';
+var checkBox = document.createElement('input')
+checkBox.type = 'checkbox';
+checkBox.id = 'theType'
+
+var iconDiv = document.createElement('div')
+iconDiv.className = 'icon <original-necessary-stuff>'
+"icon <original-necessary-stuff>"
+var dlLink = document.createElement('a')
+li.setAttribute('data-viewType', 'theViewType');
+li.appendChild(checkBox);
+//iconDiv.appendChild(<theSvgIcon>)
+li.appendChild(iconDiv);
+li.appendChild(dlLink);
+
+checkBox.onchange = function(){
+  if(this.checked) console.log('add data-viewType to list of stuff to be zipped !');
+  else console.log('add remove data-viewType to list of stuff to be zipped !');
+}
+(){
+  if(this.checked) console.log('add data-viewType to list of stuff to be zipped !');
+  else console.log('add remove data-viewType to list of stuff to be zipped !');
+}
+
+dlLink.onclick = function(){
+  console.log(this.parentElement.attribute('data-viewType' + ' to be savedAs !'))
+}
+(){
+  console.log(this.parentElement.attribute('data-viewType' + ' to be savedAs !'))
+}
+// the popup
+var popupTitle = document.createElement('h1')
+popupTitle.textContent = 'the circuit name'
+"the circuit name"
+var popupUl = document.createElement('ul')
+popupUl.appendChild(li);
+var dlZipLink = document.createElement('a')
+dlZipLink.onclick = function(){
+  console.log('get the items names from toZip array & zim \'em all ! ')
+}
+(){
+  console.log('get the items names from toZip array & zim \'em all ! ')
+}
+var popupDiv = document.createElement('div')
+popupDiv.id = 'dlPopup';
+popupDiv.appendChild(popupTitle)
+popupDiv.appendChild(popupUl)
+popupDiv.appendChild(dlZipLink);
+document.body.appendChild(popupDiv)
+popupDiv.style.zIndex = 1000;
+popupDiv.style.position = 'absolute';
+popupDiv.style.backgroundColor = 'white';
+popupDiv.style.top = '10px';
+popupDiv.style.left = '10px';
+dlLink.textContent = 'thisSpecificView'
+"thisSpecificView"
+li.style.display = 'block';
+checkBox.style.float = 'left';
+checkBox.style.marginTop = '2.5px';
+"2.5px"
+checkBox.style.marginRight = '10px';
+"10px"
