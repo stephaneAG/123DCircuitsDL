@@ -1,3 +1,48 @@
+// lookin ahead from the shoulders of giants ;p ..
+// to save files
+var saveAsScript = document.createElement('script');
+saveAsScript.src = 'https://cdn.rawgit.com/eligrey/FileSaver.js/master/FileSaver.js';
+document.body.appendChild(saveAsScript);
+// to test the above:
+/*
+// text
+var blob = new Blob(["Hello World, tef !"], {type: 'text/plain;charset=utf-8'}); // blob that
+saveAs(blob, 'fuckYeah.tef');
+// not working ..
+var blob = new Blob([viewsLinks[0][2]], {type: 'text/plain;charset=utf-8'});
+saveAs(blob, 'drawing.svg');
+// .. but the following does -> 'hurray' !!! ^^
+var doctype = '<?xml version="1.0" standalone="no"?>' + '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
+var source = (new XMLSerializer()).serializeToString( viewsLinks[0][2] ); // serialize SVG XML to str
+var blob = new Blob([ doctype + source], { type: 'image/svg+xml;charset=utf-8' }); // blob that
+saveAs(blob, 'drawing.svg');
+/*
+var blob = new Blob([viewsLinks[0][2]], {type: 'text/plain;charset=utf-8'});
+saveAs(blob, 'drawing.svg');
+*/
+*/
+
+// to save zip files
+var saveZipScript = document.createElement('script');
+saveZipScript.src = 'https://cdn.rawgit.com/Stuk/jszip/master/dist/jszip.min.js';
+document.body.appendChild(saveZipScript);
+// to test the above:
+/*
+var zip = new JSZip();
+zip.file('fuckYeah.tef', "Hello World, tef !\n");
+zip.folder('othertxt').file('fuckYeah.tef', "Hello World, tef !\n");
+var content = zip.generate({type: 'blob'});
+saveAs(content, 'soSweet.zip');
+// AND WIP TEST:
+var zip = new JSZip();
+zip.file('fuckYeah.tef', "Hello World, tef !\n");
+var doctype = '<?xml version="1.0" standalone="no"?>' + '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
+var source = (new XMLSerializer()).serializeToString( viewsLinks[0][2] ); // serialize SVG XML to str
+zip.folder('drawings').file('drawing.svg', doctype + source); // unsupported format ?!
+var content = zip.generate({type: 'blob'});
+saveAs(content, 'soSweet.zip');
+*/
+
 // get the circuit/project name
 var circuitTitle = document.querySelector('.js-circuit-menu-title').textContent || document.querySelector('.vertical-spacing--title').textContent.substr(0, document.querySelector('.vertical-spacing--title').textContent.indexOf('|')-3);
 
