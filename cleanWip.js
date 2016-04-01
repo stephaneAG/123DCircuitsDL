@@ -20,7 +20,6 @@ saveAs(blob, 'drawing.svg');
 var blob = new Blob([viewsLinks[0][2]], {type: 'text/plain;charset=utf-8'});
 saveAs(blob, 'drawing.svg');
 */
-*/
 
 // to save zip files
 var saveZipScript = document.createElement('script');
