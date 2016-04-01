@@ -78,7 +78,8 @@ viewsLinks.push(
     //bomLink.href.substr(1), // the name/type of the view
     bomLink.href.substr(bomLink.href.indexOf('#')+1), // the name/type of the view
     bomLink.querySelector('svg'), // the icon for the type of the view
-    '<h3>' + circuitTitle + '</h3>' + htmlTable, // the content for the view
+    //'<h3>' + circuitTitle + '</h3>' + htmlTable, // the content for the view
+    (new XMLSerializer()).serializeToString( htmlTable ), // wip testing, title to be added
     'html' // the extension for the future file blob
   ],
   [
@@ -93,12 +94,13 @@ viewsLinks.push(
 
 // build up the popup <li>'s
 viewsLinks.forEach(function(viewLink){
-  // R: viewLink = [0]-> name/type | [1]-> SVG icon  | [2]-> content  | [1]-> .ext 
+  // R: viewLink = [0]-> name/type | [1]-> SVG icon  | [2]-> content  | [3]-> .ext 
   // create <li>
   var li = document.createElement('li')
   li.className = 'circuit-view';
   //li.setAttribute('data-viewType', 'theViewType'); // TODO: change to actual type from viewLink
   li.setAttribute('data-viewType', viewLink[0]);
+  li.setAttribute('data-viewExt', viewLink[3]);
   li.style.display = 'block';
   // create to-be-zipped checkbox
   var checkBox = document.createElement('input');
@@ -109,8 +111,8 @@ viewsLinks.forEach(function(viewLink){
   checkBox.style.marginTop = '2.5px';
   checkBox.style.marginRight = '10px';
   checkBox.onchange = function(){
-  if(this.checked) checkToZip( this.parentElement.getAttribute('data-viewType') );
-  else uncheckToZip( this.parentElement.getAttribute('data-viewType') );
+  if(this.checked) checkToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
+  else uncheckToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
 }
   var iconDiv = document.createElement('div')
   iconDiv.className = 'sitemenu__view_switch sitemenu__svg_block_btn'; // necessary classes ( as original container )
@@ -169,6 +171,7 @@ window.toZip = []; // 'll hold th enames/types of the views to be added to the g
 function checkToZip(viewType){
   window.toZip.push(viewType);
   console.log('viewTypes to be zipped: ' + window.toZip);
+  // TODO: update 'data-checked' on parent for the SVG-icons-as-checkboxes-blue-and-black-colored stuff
 }
 // remove the view type to the ones to be packed inside the .zip file
 function uncheckToZip(viewType){
@@ -179,22 +182,66 @@ function uncheckToZip(viewType){
     }
   }
   console.log('viewTypes to be zipped: ' + window.toZip);
+  // TODO: update 'data-checked' on parent for the SVG-icons-as-checkboxes-blue-and-black-colored stuff
 }
 
 //var chk = document.querySelector('input[type="checkbox"][value="Ass"]')
 //chk.onchange = function(){ console.log( this.checked ) }
 
+// general purpose helper
+function getViewFromType(viewType){
+  for(var i=0; i < viewsLinks.length; i++){
+    if( viewsLinks[i][0] + '_' + viewsLinks[i][3] === viewType ) { // ex: schematics_svg, bom_html, bom_csv, ..
+      return viewsLinks[i]; // R: viewLink = [0]-> name/type | [1]-> SVG icon  | [2]-> content  | [3]-> .ext
+      break;
+    }
+  }
+}
+
 // helper fcn(s) for saving file/blob ( .whatever )
 function saveViewAs(viewType){
-  // R: viewLink = [0]-> name/type | [1]-> SVG icon  | [2]-> content  | [1]-> .ext 
+  // R: viewLink = [0]-> name/type | [1]-> SVG icon  | [2]-> content  | [3]-> .ext 
   // get viewsLink whose name === the one passed as param
+  var view = getViewFromType(viewType);
   // blob its content & saveAs( type + ext )
+  if ( view[3] === 'csv' ) {
+    var blob = new Blob([ view[2] ], {type: 'text/plain;charset=utf-8'}); // blob that
+    saveAs(blob, view[0] + '.' + view[3]);
+  }
+  else if ( view[3] === 'html' ){
+    var blob = new Blob([ view[2] ], {type: 'text/html;charset=utf-8'}); // blob that
+    saveAs(blob, view[0] + '.' + view[3]);
+  }
+  else if ( view[3] === 'svg' ){
+    var doctype = '<?xml version="1.0" standalone="no"?>' + '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
+    var source = (new XMLSerializer()).serializeToString( view[2] ); // serialize SVG XML to str
+    var blob = new Blob([ doctype + source], { type: 'image/svg+xml;charset=utf-8' }); // blob that
+    saveAs(blob, view[0] + '.' + view[3]);
+  }
 }
 
 // helper fcn(s) for saving .zip
 dlZipLink.onclick = function(){
   console.log('get the items names from toZip array & zim \'em all ! ')
   // TODO: 
-  // for all items present in 'window.toZip' array, create azip.file, add blob of from content to it,
-  // finally, saveAs the .zip
+  var zip = new JSZip(); // create a .zip file
+  // for all items present in 'window.toZip' array, create a file, add blob from content to it,
+  for(var i=0; i < window.toZip.length; i++){
+    var view = getViewFromType(window.toZip[i]);
+    // blob its content & create a zip.file(..)
+    if ( view[3] === 'csv' ) {
+      zip.file(view[0] + '.' + view[3], view[2] + '\n'); // file that
+    }
+    else if ( view[3] === 'html' ){
+      zip.file(view[0] + '.' + view[3], view[2]); // file that
+    }
+    else if ( view[3] === 'svg' ){
+      var doctype = '<?xml version="1.0" standalone="no"?>' + '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
+      var source = (new XMLSerializer()).serializeToString( view[2] ); // serialize SVG XML to str
+      zip.file(view[0] + '.' + view[3], doctype + source); // file that
+    }
+  }
+  // and finally, saveAs all that stuff as a .zip
+  var zipContent = zip.generate({type: 'blob'});
+  saveAs(zipContent, circuitTitle.replace(/ /g, '_') + '.zip'); // ex: circuit_title.zip
 }
