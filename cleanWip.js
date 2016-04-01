@@ -20,20 +20,30 @@ var viewsLinks = []; // holds 'em all
 
 // get bom(s) icons & data
 var bomLink = document.querySelector('a[href="#bom"]');
-var htmlTable = document.querySelector('table.bom__table');
+bomLink.click(); // prevent the below stuff to be 'null'
+var htmlTable = document.querySelector('table.bom__table'); // R: null if we don't first click on the bom link ..
+
+// it seems my naïve handling doesnt suffice any more ..
+var csvContent = htmlTable.innerText.replace(/\s{8}/g, '\t').replace(/\s{3,}/g, '\n').replace(/\t{1,}/g, ',');
+csvContent.replace(/,\n/g, ',""\n');
+if ( csvContent.endsWith(',') ) csvContent += '""\n';
+
 viewsLinks.push(
   [
-    bomLink.substr(1), // the name/type of the view
+    //bomLink.href.substr(1), // the name/type of the view
+    bomLink.href.substr(bomLink.href.indexOf('#')+1), // the name/type of the view
     bomLink.querySelector('svg'), // the icon for the type of the view
     '<h3>' + circuitTitle + '</h3>' + htmlTable, // the content for the view
     'html' // the extension for the future file blob
   ],
   [
-    bomLink.substr(1), // the name/type of the view
+    //bomLink.href.substr(1), // the name/type of the view
+    bomLink.href.substr(bomLink.href.indexOf('#')+1), // the name/type of the view
     bomLink.querySelector('svg'), // the icon for the type of the view
-    circuitTitle + ' - Bill Of Materials\n' + htmlTable.innerText.split(''\t').join('','), // the content for the view
+    //circuitTitle + ' - Bill Of Materials\n' + htmlTable.innerText.split('\t').join(','), // the content for the view
+    circuitTitle + ' - Bill Of Materials\n' + csvContent, // the content for the view
     'csv' // the extension for the future file blob
-  ],
+  ]
 );
 
 // build up the popup <li>'s
@@ -41,7 +51,8 @@ viewsLinks.push(
 // build up popup div
 
 // helper fcn(s) for boxes check/uncheck
-
+var chk = document.querySelector('input[type="checkbox"][value="Ass"]')
+chk.onchange = function(){ console.log( this.checked ) }
 // helper fcn(s) for saving file/blob ( .whatever )
 
 // helper fcn(s) for saving .zip
