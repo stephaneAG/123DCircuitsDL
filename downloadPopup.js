@@ -90,48 +90,46 @@ formData.value = JSON.stringify( htmlTable.textContent.split('\t').join(',') );
 // ---------------------------- quick unik test ------------------------------------
 var li = document.createElement('li')
 li.className = 'circuit-view';
+li.setAttribute('data-viewType', 'theViewType');
+li.style.display = 'block';
 var checkBox = document.createElement('input')
 checkBox.type = 'checkbox';
 checkBox.id = 'theType'
+checkBox.style.float = 'left';
+checkBox.style.marginTop = '2.5px';
+checkBox.style.marginRight = '10px';
 
 var iconDiv = document.createElement('div')
 iconDiv.className = 'icon <original-necessary-stuff>'
-"icon <original-necessary-stuff>"
+//iconDiv.appendChild(<theSvgIcon>)
 var dlLink = document.createElement('a')
+dlLink.textContent = 'thisSpecificView';
 li.setAttribute('data-viewType', 'theViewType');
 li.appendChild(checkBox);
-//iconDiv.appendChild(<theSvgIcon>)
 li.appendChild(iconDiv);
 li.appendChild(dlLink);
+
 
 checkBox.onchange = function(){
   if(this.checked) console.log('add data-viewType to list of stuff to be zipped !');
   else console.log('add remove data-viewType to list of stuff to be zipped !');
 }
-(){
-  if(this.checked) console.log('add data-viewType to list of stuff to be zipped !');
-  else console.log('add remove data-viewType to list of stuff to be zipped !');
-}
 
 dlLink.onclick = function(){
-  console.log(this.parentElement.attribute('data-viewType' + ' to be savedAs !'))
+  console.log(this.parentElement.getAttribute('data-viewType') + ' to be savedAs !')
 }
-(){
-  console.log(this.parentElement.attribute('data-viewType' + ' to be savedAs !'))
-}
+
 // the popup
 var popupTitle = document.createElement('h1')
 popupTitle.textContent = 'the circuit name'
-"the circuit name"
 var popupUl = document.createElement('ul')
 popupUl.appendChild(li);
 var dlZipLink = document.createElement('a')
+dlZipLink.textContent = 'DL ZIP OF EM ALL'
 dlZipLink.onclick = function(){
   console.log('get the items names from toZip array & zim \'em all ! ')
 }
-(){
-  console.log('get the items names from toZip array & zim \'em all ! ')
-}
+
 var popupDiv = document.createElement('div')
 popupDiv.id = 'dlPopup';
 popupDiv.appendChild(popupTitle)
@@ -143,11 +141,5 @@ popupDiv.style.position = 'absolute';
 popupDiv.style.backgroundColor = 'white';
 popupDiv.style.top = '10px';
 popupDiv.style.left = '10px';
-dlLink.textContent = 'thisSpecificView'
-"thisSpecificView"
-li.style.display = 'block';
-checkBox.style.float = 'left';
-checkBox.style.marginTop = '2.5px';
-"2.5px"
-checkBox.style.marginRight = '10px';
-"10px"
+
+
