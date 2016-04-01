@@ -113,9 +113,10 @@ viewsLinks.forEach(function(viewLink){
   checkBox.style.marginTop = '2.5px';
   checkBox.style.marginRight = '10px';
   checkBox.onchange = function(){
-  if(this.checked) checkToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
-  else uncheckToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
-}
+    console.log('CHECKBOX CHANGE HAPPENED !');
+    if(this.checked) checkToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
+    else uncheckToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
+  }
   var iconDiv = document.createElement('div')
   iconDiv.className = 'sitemenu__view_switch sitemenu__svg_block_btn'; // necessary classes ( as original container )
   // TODO: append viewLink SVG icon as child of the iconDiv
@@ -123,6 +124,10 @@ viewsLinks.forEach(function(viewLink){
   var dlLink = document.createElement('a');
   //dlLink.textContent = 'thisSpecificView'; // TODO: change to actual type from viewLink
   dlLink.textContent = viewLink[0];
+  dlLink.onclick = function(){
+    console.log(this.parentElement.getAttribute('data-viewType') + ' to be savedAs !');
+    saveViewAs( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
+  }
   // add items to <li>
   li.appendChild(checkBox);
   li.appendChild(iconDiv);
@@ -132,7 +137,7 @@ viewsLinks.forEach(function(viewLink){
 
 // build the popup div elements
 // title
-var popupTitle = document.createElement('h2');
+var popupTitle = document.createElement('h3');
 popupTitle.textContent = circuitTitle;
 // dl zip link
 var dlZipLink = document.createElement('a');
