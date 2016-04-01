@@ -91,7 +91,10 @@ viewsLinks.push(
   ]
 );
 
-// build up the popup <li>'s
+// build up the popup <ul> & <li>'s
+// ul
+var popupUl = document.createElement('ul');
+// li's
 viewsLinks.forEach(function(viewLink){
   // R: viewLink = [0]-> name/type | [1]-> SVG icon  | [2]-> content  | [3]-> .ext 
   // create <li>
@@ -124,15 +127,13 @@ viewsLinks.forEach(function(viewLink){
   li.appendChild(checkBox);
   li.appendChild(iconDiv);
   li.appendChild(dlLink);
+  popupUl.appendChild(li);
 })
 
 // build the popup div elements
 // title
 var popupTitle = document.createElement('h2');
 popupTitle.textContent = circuitTitle;
-// ul
-var popupUl = document.createElement('ul');
-popupUl.appendChild(li);
 // dl zip link
 var dlZipLink = document.createElement('a');
 dlZipLink.textContent = 'DL ZIP OF EM ALL';
