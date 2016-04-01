@@ -7,9 +7,11 @@ var links = menus[1].querySelectorAll('a');
 var viewsLinks = []; // holds 'em all
 [].forEach.call(links, function(link) {
   viewsLinks.push([
-    link.href.substr(1), // the name/type of the view
+    //link.href.substr(1), // the name/type of the view
+    link.href.substr(link.href.indexOf('#')+1), // the name/type of the view
     link.querySelector('svg'), // the icon for the type of the view
-    document.querySelector(link.href + 'Tab').querySelector('svg'), // the SVG for the view
+    //document.querySelector(link.href + 'Tab').querySelector('svg'), // the SVG for the view
+    document.querySelector(link.href.substr(link.href.indexOf('#')) + 'Tab').querySelector('svg'), // the SVG for the view
     'svg' // the extension for the future file blob
   ]);
 });
