@@ -154,15 +154,16 @@ viewsLinks.forEach(function(viewLink){
   iconDiv.style.fontSize = '30px';
   iconDiv.style.textAlign = 'center';
   iconDiv.style.lineHeight = '50px';
-  // additional niceties ..
-  iconDiv.onmouseover = function(){
+  // additional niceties .. nb: maybe not working because element doesn't handler pinter events ..
+  // .. which seems quite ogical .. -> so handle the hover on the checkbox & reflect that on the iconDiv ? maybe ..
+  iconDiv.onmouseenter = function(){
     this.setAttribute('data-glyph', this.innerHTML );
     this.innerHTML = '&#10003;';
-    console.log('iconDiv mouse over happened !');
+    console.log('iconDiv mouse enter happened !');
   }
-  iconDiv.onmouseout = function(){
+  iconDiv.onmouseleave = function(){
     this.innerHTML = this.getAttribute('data-glyph');
-    console.log('iconDiv mouse out happened !');
+    console.log('iconDiv mouse leave happened !');
   }
   // TODO: append viewLink SVG icon as child of the iconDiv
   //iconDiv.appendChild( viewLink[1].childNodes[0].parentNode); // still wip .. dirty hack ?
@@ -341,3 +342,6 @@ function setDlConfig(){
   console.log('showiiing-yum ( not chewing gum ! )');
 }
 setDlConfig();
+setDlConfig();
+// after being called twice, it seems to get rid of the default text color that I else can't get rid of ( currently .. )
+// Nb: calling it once / once more 'd set all the checkbox to checked, thus being ready to generate a full-packed .zip file ! ;P
