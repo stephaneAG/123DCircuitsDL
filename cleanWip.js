@@ -146,8 +146,10 @@ viewsLinks.forEach(function(viewLink){
   iconDiv.style.float = 'left';
   //iconDiv.style.border = '1px solid red'; // DEBUG
   iconDiv.style.marginLeft = '-62px'; // wip for SVG checkbox ;)
-  iconDiv.innerHTML = '&#10003;'; // ✓ ( or ✔ ? &#10004; ) also dynamically changed ( to: &#9675;)
-  iconDiv.style.color = '#0696D7'; // dynamically changed on check/uncheck the corresp. checkbox ( to: '#C5CFD9')
+  //iconDiv.innerHTML = '&#10003;'; // ✓ ( or ✔ ? &#10004; ) also dynamically changed ( to: &#9675;)
+  iconDiv.innerHTML = '&#9675;'; // aka none by def
+  //iconDiv.style.color = '#0696D7'; // dynamically changed on check/uncheck the corresp. checkbox ( to: '#C5CFD9')
+  iconDiv.style.color = '#C5CFD9'; // aka none by def
   iconDiv.style.fontSize = '30px';
   iconDiv.style.textAlign = 'center'
   iconDiv.style.lineHeight = '50px'
