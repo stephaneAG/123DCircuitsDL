@@ -176,8 +176,10 @@ viewsLinks.forEach(function(viewLink){
 
 // build the popup div elements
 // title
-var popupTitle = document.createElement('h4');
-popupTitle.textContent = circuitTitle;
+var popupTitle = document.createElement('h5');
+popupTitle.textContent = '[ 123DCircuitsDL ]'; //circuitTitle;
+popupTitle.style.fontFamily = '"Roboto",sans-serif';
+popupTitle.style.fontWeight = '500';
 // dl zip link
 var dlZipLink = document.createElement('a');
 //dlZipLink.textContent = 'DL ZIP OF EM ALL';
@@ -204,7 +206,7 @@ popupDiv.style.right = '0px';
 popupDiv.style.top = '48px';
 popupDiv.style.borderTop = '1px solid #C5CFD9';
 //popupDiv.style.width = '200px';
-popupDiv.style.width = '193px';
+popupDiv.style.width = '192px';
 popupDiv.style.paddingTop = '5.5px';
 popupDiv.style.paddingLeft = '5.5px';
 
