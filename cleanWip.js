@@ -150,7 +150,8 @@ viewsLinks.forEach(function(viewLink){
   //iconDiv.innerHTML = '&#10003;'; // ✓ ( or ✔ ? &#10004; ) also dynamically changed ( to: &#9675;)
   iconDiv.innerHTML = '&#9675;'; // aka none by def
   //iconDiv.style.color = '#0696D7'; // dynamically changed on check/uncheck the corresp. checkbox ( to: '#C5CFD9')
-  iconDiv.style.color = '#C5CFD9'; // aka none by def
+  //iconDiv.style.color = '#C5CFD9'; // aka none by def
+  iconDiv.style.color = 'rgb(197, 207, 217);'; // seems to defeat the original black-ish color ..
   iconDiv.style.fontSize = '30px';
   iconDiv.style.textAlign = 'center';
   iconDiv.style.lineHeight = '50px';
@@ -341,7 +342,7 @@ function setDlConfig(){
   });
   console.log('showiiing-yum ( not chewing gum ! )');
 }
-setDlConfig();
-setDlConfig();
-// after being called twice, it seems to get rid of the default text color that I else can't get rid of ( currently .. )
+//setDlConfig();
+//setDlConfig();
+// NO MORE ! -> after being called twice, it seems to get rid of the default text color that I else can't get rid of ( currently .. )
 // Nb: calling it once / once more 'd set all the checkbox to checked, thus being ready to generate a full-packed .zip file ! ;P
