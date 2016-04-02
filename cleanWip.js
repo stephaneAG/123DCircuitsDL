@@ -119,6 +119,7 @@ viewsLinks.forEach(function(viewLink){
   checkBox.style.width = checkBox.style.height = '50px';
   checkBox.style.marginTop = '0px';
   checkBox.style.opacity = '0';
+  checkBox.style.cursor = 'pointer';
   checkBox.onchange = function(){
     console.log('CHECKBOX CHANGE HAPPENED !');
     if(this.checked) {
@@ -153,7 +154,6 @@ viewsLinks.forEach(function(viewLink){
   iconDiv.style.fontSize = '30px';
   iconDiv.style.textAlign = 'center';
   iconDiv.style.lineHeight = '50px';
-  iconDiv.style.cursor = 'pointer';
   // TODO: append viewLink SVG icon as child of the iconDiv
   //iconDiv.appendChild( viewLink[1].childNodes[0].parentNode); // still wip .. dirty hack ?
   var dlLink = document.createElement('a');
@@ -170,6 +170,14 @@ viewsLinks.forEach(function(viewLink){
     console.log(this.parentElement.getAttribute('data-viewType') + ' to be savedAs !');
     saveViewAs( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
   }
+  
+  dlLink.onmouseover = function(){
+    console.log('mouse over happened !');
+  }
+  dlLink.onmouseout = function(){
+    console.log('mouse over happened !');
+  }
+  
   // add items to <li>
   li.appendChild(checkBox);
   li.appendChild(iconDiv);
