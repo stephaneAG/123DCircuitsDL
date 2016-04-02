@@ -155,7 +155,10 @@ viewsLinks.forEach(function(viewLink){
   //iconDiv.appendChild( viewLink[1].childNodes[0].parentNode); // still wip .. dirty hack ?
   var dlLink = document.createElement('a');
   //dlLink.textContent = 'thisSpecificView'; // TODO: change to actual type from viewLink
-  dlLink.textContent = viewLink[0] + ' (.' + viewLink[3] + ')';
+  dlLink.textContent = viewLink[0];
+  // adjustement for bom's
+  if(viewLink[0] === 'bom') dlLink.textContent = viewLink[0] + ' (.' + viewLink[3] + ')';
+  else dlLink.textContent = viewLink[0];
   dlLink.style.display = 'block';
   dlLink.style.lineHeight = '50px'; // vertical align center ;)
   dlLink.style.fontSize = '20px';
@@ -300,4 +303,5 @@ function setDlConfig(){
   [].forEach(function(checkB){
     checkB.click();
   });
+  console.log('showiiing-yum ( not chewing gum ! )');
 }
