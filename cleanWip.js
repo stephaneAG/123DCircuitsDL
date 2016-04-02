@@ -154,6 +154,16 @@ viewsLinks.forEach(function(viewLink){
   iconDiv.style.fontSize = '30px';
   iconDiv.style.textAlign = 'center';
   iconDiv.style.lineHeight = '50px';
+  // additional niceties ..
+  iconDiv.onmouseover = function(){
+    this.setAttribute('data-glyph', this.innerHTML );
+    this.innerHTML = '&#10003;';
+    console.log('iconDiv mouse over happened !');
+  }
+  iconDiv.onmouseout = function(){
+    this.innerHTML = this.getAttribute('data-glyph');
+    console.log('iconDiv mouse out happened !');
+  }
   // TODO: append viewLink SVG icon as child of the iconDiv
   //iconDiv.appendChild( viewLink[1].childNodes[0].parentNode); // still wip .. dirty hack ?
   var dlLink = document.createElement('a');
@@ -173,12 +183,12 @@ viewsLinks.forEach(function(viewLink){
   
   dlLink.onmouseover = function(){
     this.setAttribute('data-color', this.style.color );
-    this.style.color = 'red';
-    console.log('mouse over happened !');
+    this.style.color = '#0696D7';
+    console.log('dlLink mouse over happened !');
   }
   dlLink.onmouseout = function(){
     this.style.color = this.getAttribute('data-color');
-    console.log('mouse over happened !');
+    console.log('dlLink mouse out happened !');
   }
   
   // add items to <li>
