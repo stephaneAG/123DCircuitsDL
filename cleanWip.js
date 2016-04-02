@@ -172,9 +172,12 @@ viewsLinks.forEach(function(viewLink){
   }
   
   dlLink.onmouseover = function(){
+    this.setAttribute('data-color', this.style.color );
+    this.style.color = 'red';
     console.log('mouse over happened !');
   }
   dlLink.onmouseout = function(){
+    this.style.color = this.getAttribute('data-color');
     console.log('mouse over happened !');
   }
   
