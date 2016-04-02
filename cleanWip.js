@@ -125,19 +125,19 @@ viewsLinks.forEach(function(viewLink){
       checkToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
       // update controls to reflect the change
       // update icon ( glyph & color )
-      this.nextSibling.innerHTML = '&#9675;';
-      this.nextSibling.style.color = '#C5CFD9';
+      this.nextSibling.innerHTML = '&#10003;';
+      this.nextSibling.style.color = '#0696D7';
       // update dlLink ( color )
-      this.nextSibling.nextSibling.style.color = '#C5CFD9';
+      this.nextSibling.nextSibling.style.color = '#0696D7';
     }
     else {
       uncheckToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
       // update controls to reflect the change
       // update icon ( glyph & color )
-      this.nextSibling.innerHTML = '&#10003;';
-      this.nextSibling.style.color = '#0696D7';
+      this.nextSibling.innerHTML = '&#9675;';
+      this.nextSibling.style.color = '#C5CFD9';
       // update dlLink ( color )
-      this.nextSibling.nextSibling.style.color = '#0696D7';
+      this.nextSibling.nextSibling.style.color = '#C5CFD9';
     }
   }
   var iconDiv = document.createElement('div');
@@ -316,3 +316,4 @@ function setDlConfig(){
   });
   console.log('showiiing-yum ( not chewing gum ! )');
 }
+setDlConfig();
