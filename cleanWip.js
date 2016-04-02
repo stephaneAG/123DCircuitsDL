@@ -188,11 +188,17 @@ var dlZipLink = document.createElement('a');
 dlZipLink.textContent = circuitTitle.replace(/ /g, '_') + '.zip'
 dlZipLink.style.textOverflow = 'ellipsis';
 
+// to help newcomers if someone else actually uses this script ;)
+var hint = document.createElement('p');
+hint.textContent = 'click to download, tick to add to .zip' // click to DL, tick to zip
+popupTitle.style.textAlign = 'center';
+//popupTitle.style.fontSize = 'center';
 // build up popup div
 var popupDiv = document.createElement('div');
 popupDiv.id = 'dlPopup';
 // TODO: add 'close' button that'd get rid of it [ & reset stuff if necessary ? .. ]
 popupDiv.appendChild(popupTitle);
+popupDiv.appendChild( hint );
 popupDiv.appendChild(popupUl);
 popupDiv.appendChild(dlZipLink);
 
