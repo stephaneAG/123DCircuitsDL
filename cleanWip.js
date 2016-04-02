@@ -244,6 +244,7 @@ popupDiv.style.borderTop = '1px solid #C5CFD9';
 popupDiv.style.width = '192px';
 popupDiv.style.paddingTop = '5.5px';
 popupDiv.style.paddingLeft = '5.5px';
+popupDiv.style.paddingBottom = '5.5px';
 
 // start hidden & set transition prop(s) & duration
 popupDiv.style.right = '-200px';
@@ -364,4 +365,5 @@ function hideDlPopup(){
 }
 
 // for quicker debug
-showDlPopup()
+//showDlPopup()
+setTimeout(function(){ showDlPopup() },500);
