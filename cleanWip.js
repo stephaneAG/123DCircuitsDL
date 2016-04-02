@@ -129,7 +129,7 @@ viewsLinks.forEach(function(viewLink){
   iconDiv.style.float = 'left';
   iconDiv.style.border = '1px solid red'; // DEBUG
   iconDiv.style.marginLeft = '-62px'; // wip for SVG checkbox ;)
-  iconDiv.textContent = '&#10003;'; // ✓ ( or ✔ ? &#10004; )
+  iconDiv.innerHTML = '&#10003;'; // ✓ ( or ✔ ? &#10004; )
   iconDiv.style.color = '#0696D7';
   // TODO: append viewLink SVG icon as child of the iconDiv
   //iconDiv.appendChild( viewLink[1].childNodes[0].parentNode); // still wip .. dirty hack ?
