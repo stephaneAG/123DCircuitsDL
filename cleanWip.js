@@ -177,9 +177,11 @@ viewsLinks.forEach(function(viewLink){
 // build the popup div elements
 // title
 var popupTitle = document.createElement('h5');
-popupTitle.textContent = '[ 123DCircuitsDL ]'; //circuitTitle;
+popupTitle.textContent = 'Export options'; //circuitTitle;
 popupTitle.style.fontFamily = '"Roboto",sans-serif';
 popupTitle.style.fontWeight = '500';
+popupTitle.style.paddingTop = '18px';
+popupTitle.style.textAlign = 'center';
 // dl zip link
 var dlZipLink = document.createElement('a');
 //dlZipLink.textContent = 'DL ZIP OF EM ALL';
