@@ -106,7 +106,7 @@ viewsLinks.forEach(function(viewLink){
   li.setAttribute('data-viewExt', viewLink[3]);
   li.style.display = 'block';
   li.style.height = '50px';
-  li.style.border = '1px solid blue'; // DEBUG
+  //li.style.border = '1px solid blue'; // DEBUG
   // create to-be-zipped checkbox
   var checkBox = document.createElement('input');
   checkBox.type = 'checkbox';
@@ -144,7 +144,7 @@ viewsLinks.forEach(function(viewLink){
   iconDiv.style.pointerEvents = 'none';
   iconDiv.className = 'sitemenu__view_switch sitemenu__svg_block_btn'; // necessary classes ( as original container )
   iconDiv.style.float = 'left';
-  iconDiv.style.border = '1px solid red'; // DEBUG
+  //iconDiv.style.border = '1px solid red'; // DEBUG
   iconDiv.style.marginLeft = '-62px'; // wip for SVG checkbox ;)
   iconDiv.innerHTML = '&#10003;'; // ✓ ( or ✔ ? &#10004; ) also dynamically changed ( to: &#9675;)
   iconDiv.style.color = '#0696D7'; // dynamically changed on check/uncheck the corresp. checkbox ( to: '#C5CFD9')
@@ -155,7 +155,7 @@ viewsLinks.forEach(function(viewLink){
   //iconDiv.appendChild( viewLink[1].childNodes[0].parentNode); // still wip .. dirty hack ?
   var dlLink = document.createElement('a');
   //dlLink.textContent = 'thisSpecificView'; // TODO: change to actual type from viewLink
-  dlLink.textContent = viewLink[0];
+  dlLink.textContent = viewLink[0] + ' (.' + viewLink[3] + ')';
   dlLink.style.display = 'block';
   dlLink.style.lineHeight = '50px'; // vertical align center ;)
   dlLink.style.fontSize = '20px';
@@ -177,7 +177,9 @@ var popupTitle = document.createElement('h4');
 popupTitle.textContent = circuitTitle;
 // dl zip link
 var dlZipLink = document.createElement('a');
-dlZipLink.textContent = 'DL ZIP OF EM ALL';
+//dlZipLink.textContent = 'DL ZIP OF EM ALL';
+dlZipLink.textContent = circuitTitle.replace(/ /g, '_') + '.zip'
+dlZipLink.style.textOverflow = 'ellipsis';
 
 // build up popup div
 var popupDiv = document.createElement('div');
@@ -286,4 +288,16 @@ dlZipLink.onclick = function(){
   // and finally, saveAs all that stuff as a .zip
   var zipContent = zip.generate({type: 'blob'});
   saveAs(zipContent, circuitTitle.replace(/ /g, '_') + '.zip'); // ex: circuit_title.zip
+}
+
+// pseudo-simulate (! ^^) some default/passed config (presumably a json/jsObj) by:
+// - checking the said config obj ( later )
+// Note: [] with any type of view provided by 123D Circuits, but the boms that have needs '_ext' suffixing ( html or csv )
+// - setting everything to checked by default ( by now )
+// R/Nb: if using a wrapper, the following fcn could run before showing the popup, so as to adjust settings to be shown
+function setDlConfig(){
+  var checkBoxes = document.querySelector('#dlPopup').querySelectorAll('input[type="checkbox"]');
+  [].forEach(function(checkB){
+    checkB.click();
+  });
 }
