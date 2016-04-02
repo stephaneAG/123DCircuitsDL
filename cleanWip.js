@@ -151,8 +151,9 @@ viewsLinks.forEach(function(viewLink){
   //iconDiv.style.color = '#0696D7'; // dynamically changed on check/uncheck the corresp. checkbox ( to: '#C5CFD9')
   iconDiv.style.color = '#C5CFD9'; // aka none by def
   iconDiv.style.fontSize = '30px';
-  iconDiv.style.textAlign = 'center'
-  iconDiv.style.lineHeight = '50px'
+  iconDiv.style.textAlign = 'center';
+  iconDiv.style.lineHeight = '50px';
+  iconDiv.style.cursor = 'pointer';
   // TODO: append viewLink SVG icon as child of the iconDiv
   //iconDiv.appendChild( viewLink[1].childNodes[0].parentNode); // still wip .. dirty hack ?
   var dlLink = document.createElement('a');
