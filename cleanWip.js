@@ -246,8 +246,8 @@ popupDiv.style.paddingTop = '5.5px';
 popupDiv.style.paddingLeft = '5.5px';
 
 // start hidden & set transition prop(s) & duration
-document.querySelector('#dlPopup').style.right = '-200px';
-document.querySelector('#dlPopup').style.webkitTransition = 'right 500ms ease-out';
+popupDiv.style.right = '-200px';
+popupDiv.style.webkitTransition = 'right 500ms ease-out';
 
 // append to page
 document.body.appendChild(popupDiv);
@@ -351,16 +351,16 @@ function setDlConfig(){
 // Nb: calling it once / once more 'd set all the checkbox to checked, thus being ready to generate a full-packed .zip file ! ;P
 
 // transition anyone ?
-document.querySelector('#dlPopup')
+//document.querySelector('#dlPopup')
 function showDlPopup(tickConfig){
   if( tickConfig !== undefined ){
     // handle some dl config settings, aka click some of the checkboxes
   }
   setDlConfig(); // to test: have all by def
-  document.querySelector('#dlPopup').style.right = '0px';
+  popupDiv.style.right = '0px';
 }
 function hideDlPopup(){
-  document.querySelector('#dlPopup').style.right = '-200px';
+  popupDiv.style.right = '-200px';
 }
 
 // for quicker debug
