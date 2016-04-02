@@ -115,6 +115,9 @@ viewsLinks.forEach(function(viewLink){
   checkBox.style.float = 'left';
   checkBox.style.marginTop = '2.5px';
   checkBox.style.marginRight = '10px';
+  // wip for SVG checkbox ;)
+  checkBox.style.width = checkBox.style.height = '50px';
+  checkBox.style.marginTop = '0px';
   checkBox.onchange = function(){
     console.log('CHECKBOX CHANGE HAPPENED !');
     if(this.checked) checkToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
@@ -125,11 +128,18 @@ viewsLinks.forEach(function(viewLink){
   iconDiv.className = 'sitemenu__view_switch sitemenu__svg_block_btn'; // necessary classes ( as original container )
   iconDiv.style.float = 'left';
   iconDiv.style.border = '1px solid red'; // DEBUG
+  iconDiv.style.marginLeft = '-62px'; // wip for SVG checkbox ;)
+  iconDiv.textContent = '&#10003;'; // ✓ ( or ✔ ? &#10004; )
+  iconDiv.style.color = '#0696D7';
   // TODO: append viewLink SVG icon as child of the iconDiv
   //iconDiv.appendChild( viewLink[1].childNodes[0].parentNode); // still wip .. dirty hack ?
   var dlLink = document.createElement('a');
   //dlLink.textContent = 'thisSpecificView'; // TODO: change to actual type from viewLink
   dlLink.textContent = viewLink[0];
+  dlLink.style.display = 'block';
+  dlLink.style.lineHeight = '50px'; // vertical align center ;)
+  dlLink.style.fontSize = '20px';
+  dlLink.style.textAlign = 'center'; // not mandatory ( aactually to test, but left-alignement is always preferable :p )
   dlLink.onclick = function(){
     console.log(this.parentElement.getAttribute('data-viewType') + ' to be savedAs !');
     saveViewAs( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
