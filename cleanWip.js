@@ -125,11 +125,19 @@ viewsLinks.forEach(function(viewLink){
       checkToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
       // update controls to reflect the change
       // update icon ( glyph & color )
+      this.nextSibling.innerHTML = '&#9675;';
+      this.nextSibling.color = '#C5CFD9';
       // update dlLink ( color )
+      this.nextSibling.nextSibling.color = '#C5CFD9';
     }
     else {
       uncheckToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
       // update controls to reflect the change
+      // update icon ( glyph & color )
+      this.nextSibling.innerHTML = '&#10003;';
+      this.nextSibling.color = '#0696D7';
+      // update dlLink ( color )
+      this.nextSibling.nextSibling.color = '#0696D7';
     }
   }
   var iconDiv = document.createElement('div');
@@ -165,7 +173,7 @@ viewsLinks.forEach(function(viewLink){
 
 // build the popup div elements
 // title
-var popupTitle = document.createElement('h3');
+var popupTitle = document.createElement('h4');
 popupTitle.textContent = circuitTitle;
 // dl zip link
 var dlZipLink = document.createElement('a');
@@ -188,7 +196,8 @@ popupDiv.style.backgroundColor = 'white';
 // more integrated 
 // Nb: for even more style & puff ,just add a wrapper to it that'd transition it's height from 0 to 100% or 0 to auto ;p
 popupDiv.style.right = '0px';
-popupDiv.style.top = '49px';
+popupDiv.style.top = '48px';
+popupDiv.style.borderTop = '1px solid #C5CFD9';
 //popupDiv.style.width = '200px';
 popupDiv.style.width = '193px';
 popupDiv.style.paddingTop = '5.5px';
