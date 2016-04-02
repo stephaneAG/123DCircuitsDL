@@ -126,18 +126,18 @@ viewsLinks.forEach(function(viewLink){
       // update controls to reflect the change
       // update icon ( glyph & color )
       this.nextSibling.innerHTML = '&#9675;';
-      this.nextSibling.color = '#C5CFD9';
+      this.nextSibling.style.color = '#C5CFD9';
       // update dlLink ( color )
-      this.nextSibling.nextSibling.color = '#C5CFD9';
+      this.nextSibling.nextSibling.style.color = '#C5CFD9';
     }
     else {
       uncheckToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
       // update controls to reflect the change
       // update icon ( glyph & color )
       this.nextSibling.innerHTML = '&#10003;';
-      this.nextSibling.color = '#0696D7';
+      this.nextSibling.style.color = '#0696D7';
       // update dlLink ( color )
-      this.nextSibling.nextSibling.color = '#0696D7';
+      this.nextSibling.nextSibling.style.color = '#0696D7';
     }
   }
   var iconDiv = document.createElement('div');
