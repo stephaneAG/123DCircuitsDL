@@ -118,10 +118,19 @@ viewsLinks.forEach(function(viewLink){
   // wip for SVG checkbox ;)
   checkBox.style.width = checkBox.style.height = '50px';
   checkBox.style.marginTop = '0px';
+  checkBox.style.opacity = '0';
   checkBox.onchange = function(){
     console.log('CHECKBOX CHANGE HAPPENED !');
-    if(this.checked) checkToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
-    else uncheckToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
+    if(this.checked) {
+      checkToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
+      // update controls to reflect the change
+      // update icon ( glyph & color )
+      // update dlLink ( color )
+    }
+    else {
+      uncheckToZip( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
+      // update controls to reflect the change
+    }
   }
   var iconDiv = document.createElement('div');
   iconDiv.style.pointerEvents = 'none';
@@ -129,8 +138,11 @@ viewsLinks.forEach(function(viewLink){
   iconDiv.style.float = 'left';
   iconDiv.style.border = '1px solid red'; // DEBUG
   iconDiv.style.marginLeft = '-62px'; // wip for SVG checkbox ;)
-  iconDiv.innerHTML = '&#10003;'; // ✓ ( or ✔ ? &#10004; )
-  iconDiv.style.color = '#0696D7';
+  iconDiv.innerHTML = '&#10003;'; // ✓ ( or ✔ ? &#10004; ) also dynamically changed ( to: &#9675;)
+  iconDiv.style.color = '#0696D7'; // dynamically changed on check/uncheck the corresp. checkbox ( to: '#C5CFD9')
+  iconDiv.style.fontSize = '30px';
+  iconDiv.style.textAlign = 'center'
+  iconDiv.style.lineHeight = '50px'
   // TODO: append viewLink SVG icon as child of the iconDiv
   //iconDiv.appendChild( viewLink[1].childNodes[0].parentNode); // still wip .. dirty hack ?
   var dlLink = document.createElement('a');
@@ -139,7 +151,7 @@ viewsLinks.forEach(function(viewLink){
   dlLink.style.display = 'block';
   dlLink.style.lineHeight = '50px'; // vertical align center ;)
   dlLink.style.fontSize = '20px';
-  dlLink.style.textAlign = 'center'; // not mandatory ( aactually to test, but left-alignement is always preferable :p )
+  //dlLink.style.textAlign = 'center'; // not mandatory ( aactually to test, but left-alignement is always preferable :p )
   dlLink.onclick = function(){
     console.log(this.parentElement.getAttribute('data-viewType') + ' to be savedAs !');
     saveViewAs( this.parentElement.getAttribute('data-viewType') + '_' + this.parentElement.getAttribute('data-viewExt') );
