@@ -176,7 +176,7 @@ viewsLinks.forEach(function(viewLink){
 
 // build the popup div elements
 // title
-var popupTitle = document.createElement('h5');
+var popupTitle = document.createElement('h4');
 popupTitle.textContent = 'Export options'; //circuitTitle;
 popupTitle.style.fontFamily = '"Roboto",sans-serif';
 popupTitle.style.fontWeight = '500';
@@ -190,9 +190,10 @@ dlZipLink.style.textOverflow = 'ellipsis';
 
 // to help newcomers if someone else actually uses this script ;)
 var hint = document.createElement('p');
-hint.textContent = 'click to download, tick to add to .zip' // click to DL, tick to zip
-popupTitle.style.textAlign = 'center';
-//popupTitle.style.fontSize = 'center';
+hint.innerHTML = 'click to download,<br> tick to add to .zip' // click to DL, tick to zip
+hint.style.textAlign = 'center';
+hint.style.fontSize = '15px';
+
 // build up popup div
 var popupDiv = document.createElement('div');
 popupDiv.id = 'dlPopup';
