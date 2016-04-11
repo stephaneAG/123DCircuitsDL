@@ -1,6 +1,10 @@
 # 123DCircuitsDL
 Quick &amp; dirty js bookmark that 'll download SVGs from 123D Circuits ( for when you want to use those in Illustrator instead of downloading the Gerber files &amp; firing' up Eagle .. ;p )
 
+<img src="2016-04-05-033137.jpg" width="auto" height="320">
+<img src="2016-04-05-033352.jpg" width="auto" height="320">
+<img src="2016-04-05-033409.jpg" width="auto" height="320">
+
 ![demo](https://raw.github.com/stephaneAG/123DCircuitsDL/master/123dCircuitsDL_demo.gif)
 
 R: the good stuff is in cleanWip.js ;P
