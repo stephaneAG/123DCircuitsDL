@@ -1,4 +1,4 @@
-/ lookin ahead from the shoulders of giants ;p ..
+// lookin ahead from the shoulders of giants ;p ..
 // to save files
 var saveAsScript = document.createElement('script');
 saveAsScript.src = 'https://cdn.rawgit.com/eligrey/FileSaver.js/master/FileSaver.js';
