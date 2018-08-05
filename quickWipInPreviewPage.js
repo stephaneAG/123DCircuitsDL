@@ -340,7 +340,6 @@ dlZipLink.onclick = function(){
 }
 */
 // helper fcn(s) for saving .zip - updated for using the latest version of the lib ( 3.0 )
-/*
 dlZipLink.onclick = function(){
   console.log('get the items names from toZip array & zim \'em all ! ')
   // TODO: 
@@ -351,17 +350,20 @@ dlZipLink.onclick = function(){
     // blob its content & create a zip.file(..)
     if ( view[3] === 'csv' ) {
       //zip.file(view[0] + '.' + view[3], view[2] + '\n'); // file that - V2.x
-      zip.file(view[0] + '.' + view[3], view[2] + '\n').async("string");
+      //zip.file(view[0] + '.' + view[3], view[2] + '\n').async("string");
+      zip.file(view[0] + '.' + view[3], view[2] + '\n').asText();
     }
     else if ( view[3] === 'html' ){
       zip.file(view[0] + '.' + view[3], view[2]); // file that
-      zip.file(view[0] + '.' + view[3], view[2]).async("string");
+      //zip.file(view[0] + '.' + view[3], view[2]).async("string");
+      zip.file(view[0] + '.' + view[3], view[2]).asText();
     }
     else if ( view[3] === 'svg' ){
       var doctype = '<?xml version="1.0" standalone="no"?>' + '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
       var source = (new XMLSerializer()).serializeToString( view[2] ); // serialize SVG XML to str
       //zip.file(view[0] + '.' + view[3], doctype + source); // file that
-      zip.file(view[0] + '.' + view[3], doctype + source).async("string");
+      //zip.file(view[0] + '.' + view[3], doctype + source).async("string");
+      zip.file(view[0] + '.' + view[3], doctype + source).asText();
     }
   }
   // and finally, saveAs all that stuff as a .zip
@@ -372,7 +374,7 @@ dlZipLink.onclick = function(){
     saveAs(zipContent, circuitTitle.replace(/ /g, '_') + '.zip'); // ex: circuit_title.zip
   });
 }
-*/
+
 
 // pseudo-simulate (! ^^) some default/passed config (presumably a json/jsObj) by:
 // - checking the said config obj ( later )
