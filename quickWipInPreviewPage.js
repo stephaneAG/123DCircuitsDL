@@ -340,6 +340,7 @@ dlZipLink.onclick = function(){
 }
 */
 // helper fcn(s) for saving .zip - updated for using the latest version of the lib ( 3.0 )
+/*
 dlZipLink.onclick = function(){
   console.log('get the items names from toZip array & zim \'em all ! ')
   // TODO: 
@@ -371,6 +372,7 @@ dlZipLink.onclick = function(){
     saveAs(zipContent, circuitTitle.replace(/ /g, '_') + '.zip'); // ex: circuit_title.zip
   });
 }
+*/
 
 // pseudo-simulate (! ^^) some default/passed config (presumably a json/jsObj) by:
 // - checking the said config obj ( later )
