@@ -2,7 +2,7 @@
 // to save files
 var saveAsScript = document.createElement('script');
 //saveAsScript.src = 'https://cdn.rawgit.com/eligrey/FileSaver.js/master/FileSaver.js';
-saveAsScript.src = 'https://rawgit.com/eligrey/FileSaver.js/master/src/FileSaver.js';
+saveAsScript.src = 'https://rawgit.com/stephaneAG/123DCircuitsDL/master/quickWipInPreviewPage.js';
 document.body.appendChild(saveAsScript);
 // update using a mode wehre 'export' var removed from the js source ' originally intended to work in nodejs & not in the context of a web browser )
 // to test the above:
