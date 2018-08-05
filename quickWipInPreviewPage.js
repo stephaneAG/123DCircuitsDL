@@ -2,7 +2,7 @@
 // to save files
 var saveAsScript = document.createElement('script');
 //saveAsScript.src = 'https://cdn.rawgit.com/eligrey/FileSaver.js/master/FileSaver.js';
-saveAsScript.src = 'https://rawgit.com/stephaneAG/123DCircuitsDL/master/quickWipInPreviewPage.js';
+saveAsScript.src = 'https://rawgit.com/stephaneAG/123DCircuitsDL/master/FileSaver.js';
 document.body.appendChild(saveAsScript);
 // update using a mode wehre 'export' var removed from the js source ' originally intended to work in nodejs & not in the context of a web browser )
 // to test the above:
@@ -67,7 +67,7 @@ var viewsLinks = []; // holds 'em all
 
 // get bom(s) icons & data
 var bomLink = document.querySelector('a[href="#bom"]');
-bomLink.click(); // prevent the below stuff to be 'null'
+//bomLink.click(); // prevent the below stuff to be 'null' // seems to cause troublrs when scripting the preview page ..
 var htmlTable = document.querySelector('table.bom__table'); // R: null if we don't first click on the bom link ..
 
 // it seems my naïve handling doesnt suffice any more ..
@@ -313,6 +313,7 @@ function saveViewAs(viewType){
 }
 
 // helper fcn(s) for saving .zip
+/*
 dlZipLink.onclick = function(){
   console.log('get the items names from toZip array & zim \'em all ! ')
   // TODO: 
@@ -336,6 +337,39 @@ dlZipLink.onclick = function(){
   // and finally, saveAs all that stuff as a .zip
   var zipContent = zip.generate({type: 'blob'});
   saveAs(zipContent, circuitTitle.replace(/ /g, '_') + '.zip'); // ex: circuit_title.zip
+}
+*/
+// helper fcn(s) for saving .zip - updated for using the latest version of the lib ( 3.0 )
+dlZipLink.onclick = function(){
+  console.log('get the items names from toZip array & zim \'em all ! ')
+  // TODO: 
+  var zip = new JSZip(); // create a .zip file
+  // for all items present in 'window.toZip' array, create a file, add blob from content to it,
+  for(var i=0; i < window.toZip.length; i++){
+    var view = getViewFromType(window.toZip[i]);
+    // blob its content & create a zip.file(..)
+    if ( view[3] === 'csv' ) {
+      //zip.file(view[0] + '.' + view[3], view[2] + '\n'); // file that - V2.x
+      zip.file(view[0] + '.' + view[3], view[2] + '\n').async("string");
+    }
+    else if ( view[3] === 'html' ){
+      zip.file(view[0] + '.' + view[3], view[2]); // file that
+      zip.file(view[0] + '.' + view[3], view[2]).async("string");
+    }
+    else if ( view[3] === 'svg' ){
+      var doctype = '<?xml version="1.0" standalone="no"?>' + '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
+      var source = (new XMLSerializer()).serializeToString( view[2] ); // serialize SVG XML to str
+      //zip.file(view[0] + '.' + view[3], doctype + source); // file that
+      zip.file(view[0] + '.' + view[3], doctype + source).async("string");
+    }
+  }
+  // and finally, saveAs all that stuff as a .zip
+  //var zipContent = zip.generate({type: 'blob'}); // V2.x
+  //saveAs(zipContent, circuitTitle.replace(/ /g, '_') + '.zip'); // ex: circuit_title.zip
+  var zipContent = zip.generateAsync({type:blob}).then(function (content) {
+    // use content
+    saveAs(zipContent, circuitTitle.replace(/ /g, '_') + '.zip'); // ex: circuit_title.zip
+  });
 }
 
 // pseudo-simulate (! ^^) some default/passed config (presumably a json/jsObj) by:
