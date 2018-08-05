@@ -25,7 +25,8 @@ saveAs(blob, 'drawing.svg');
 
 // to save zip files
 var saveZipScript = document.createElement('script');
-saveZipScript.src = 'https://cdn.rawgit.com/Stuk/jszip/master/dist/jszip.min.js';
+//saveZipScript.src = 'https://cdn.rawgit.com/Stuk/jszip/master/dist/jszip.min.js';
+saveZipScript.src = 'https://rawgit.com/stephaneAG/123DCircuitsDL/master/jsZip.js';
 document.body.appendChild(saveZipScript);
 // to test the above:
 /*
@@ -349,30 +350,32 @@ dlZipLink.onclick = function(){
     var view = getViewFromType(window.toZip[i]);
     // blob its content & create a zip.file(..)
     if ( view[3] === 'csv' ) {
-      //zip.file(view[0] + '.' + view[3], view[2] + '\n'); // file that - V2.x
+      zip.file(view[0] + '.' + view[3], view[2] + '\n'); // file that - V2.x
       //zip.file(view[0] + '.' + view[3], view[2] + '\n').async("string");
-      zip.file(view[0] + '.' + view[3], view[2] + '\n').asText();
+      //zip.file(view[0] + '.' + view[3], view[2] + '\n').asText();
     }
     else if ( view[3] === 'html' ){
       zip.file(view[0] + '.' + view[3], view[2]); // file that
       //zip.file(view[0] + '.' + view[3], view[2]).async("string");
-      zip.file(view[0] + '.' + view[3], view[2]).asText();
+      //zip.file(view[0] + '.' + view[3], view[2]).asText();
     }
     else if ( view[3] === 'svg' ){
       var doctype = '<?xml version="1.0" standalone="no"?>' + '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
       var source = (new XMLSerializer()).serializeToString( view[2] ); // serialize SVG XML to str
-      //zip.file(view[0] + '.' + view[3], doctype + source); // file that
+      zip.file(view[0] + '.' + view[3], doctype + source); // file that
       //zip.file(view[0] + '.' + view[3], doctype + source).async("string");
-      zip.file(view[0] + '.' + view[3], doctype + source).asText();
+      //zip.file(view[0] + '.' + view[3], doctype + source).asText();
     }
   }
   // and finally, saveAs all that stuff as a .zip
-  //var zipContent = zip.generate({type: 'blob'}); // V2.x
-  //saveAs(zipContent, circuitTitle.replace(/ /g, '_') + '.zip'); // ex: circuit_title.zip
+  var zipContent = zip.generate({type: 'blob'}); // V2.x
+  saveAs(zipContent, circuitTitle.replace(/ /g, '_') + '.zip'); // ex: circuit_title.zip
+  /*
   var zipContent = zip.generateAsync({type:blob}).then(function (content) {
     // use content
     saveAs(zipContent, circuitTitle.replace(/ /g, '_') + '.zip'); // ex: circuit_title.zip
   });
+  */
 }
 
 
