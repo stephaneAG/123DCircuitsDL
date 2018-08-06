@@ -251,6 +251,10 @@ popupDiv.style.paddingTop = '5.5px';
 popupDiv.style.paddingLeft = '5.5px';
 popupDiv.style.paddingBottom = '5.5px';
 
+// prevent too long zip link title by using text ellipsis
+popupDiv.style.textOverflow = 'ellipsis';
+popupDiv.style.overflowX = 'hidden';
+
 // start hidden & set transition prop(s) & duration
 popupDiv.style.right = '-200px';
 popupDiv.style.webkitTransition = 'right 500ms ease-out';
@@ -387,7 +391,8 @@ dlZipLink.onclick = function(){
 // R/Nb: if using a wrapper, the following fcn could run before showing the popup, so as to adjust settings to be shown
 function setDlConfig(){
   var checkBoxes = document.querySelector('#dlPopup').querySelectorAll('input[type="checkbox"]');
-  [].forEach(function(checkB){
+  //[].forEach(function(checkB){
+  checkBoxes.forEach(function(checkB){
     checkB.click();
   });
   console.log('showiiing-yum ( not chewing gum ! )');
