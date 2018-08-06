@@ -51,7 +51,8 @@ var circuitTitle = document.querySelector('.vertical-spacing--title').textConten
 
 // get svg icons, name/type & data
 var menus = document.querySelectorAll('div.sitemenu__right__item--editor')
-var links = menus[1].querySelectorAll('a');
+//var links = menus[1].querySelectorAll('a');
+var links = menus[0].querySelectorAll('a'); // mod for the preview page
 var viewsLinks = []; // holds 'em all
 [].forEach.call(links, function(link) {
   if (link.href.substr(link.href.indexOf('#')+1) !== 'bom'  ) { // we don't want no dum' ;p
@@ -68,7 +69,7 @@ var viewsLinks = []; // holds 'em all
 
 // get bom(s) icons & data
 var bomLink = document.querySelector('a[href="#bom"]');
-//bomLink.click(); // prevent the below stuff to be 'null' // seems to cause troublrs when scripting the preview page ..
+bomLink.click(); // prevent the below stuff to be 'null' // seems to cause troublrs when scripting the preview page .. or not ?
 var htmlTable = document.querySelector('table.bom__table'); // R: null if we don't first click on the bom link ..
 
 // it seems my naïve handling doesnt suffice any more ..
